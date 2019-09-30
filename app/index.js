@@ -22,5 +22,5 @@ ReactDOM.render(
   // React Element,
   <App />,
   // Where to render the Element to
-  document.getElementById('app');
+  document.getElementById('app')
 )
