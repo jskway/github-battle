@@ -34,36 +34,47 @@ export default class Popular extends React.Component {
 
     this.state = {
       selectedLanguage: 'All',
-      repos: null,
+      repos: {},
       error: null
     };
 
     this.updateLanguage = this.updateLanguage.bind(this);
     this.isLoading = this.isLoading.bind(this);
   }
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage);
+  }
 
   updateLanguage(selectedLanguage) {
     this.setState({
       selectedLanguage,
       error: null,
-      repos: null
     });
-    fetchPopularRepos(selectedLanguage)
-      .then( repos => this.setState({
-        repos,
-        error: null,
-      }))
-      .catch( error => {
-        console.warn('Error fetching repos: ', error);
 
-        this.setState({
-          error: `There was an error fetching the repositories.`
+    if (!this.state.repos[selectedLanguage]) {
+
+      fetchPopularRepos(selectedLanguage)
+        .then( data => {
+          this.setState(({ repos }) => ({
+            repos: {
+              ...repos,
+              [selectedLanguage]: data
+            }
+          }))
+        })
+        .catch( error => {
+          console.warn('Error fetching repos: ', error);
+
+          this.setState({
+            error: `There was an error fetching the repositories.`
+          });
         });
-      });
+    }
   }
 
   isLoading() {
-    return this.state.repos === null && this.state.error === null
+    const { selectedLanguage, repos, error } = this.state;
+    return !repos[selectedLanguage] && error === null
   }
 
   render() {
@@ -76,7 +87,7 @@ export default class Popular extends React.Component {
         />
         { this.isLoading() && <p>LOADING</p> }
         { error && <p>{error}</p> }
-        { repos && <pre>{JSON.stringify(repos, null, 2)}</pre> }
+        { repos[selectedLanguage] && <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre> }
       </React.Fragment>
     );
   }
