@@ -206,3 +206,7 @@ li {
   color: #c7c7c7;
   background: #f2f2f2;
 }
+
+.players-container {
+  margin: 100px 0;
+}
