@@ -40,7 +40,7 @@ function ReposGrid({ repos }) {
         return (
           <li key={html_url}>
             <Card
-              header={`#{index + 1}`}
+              header={`#${index + 1}`}
               avatar={avatar_url}
               href={html_url}
               name={login}
