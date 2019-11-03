@@ -52,7 +52,7 @@ export default class Results extends React.Component {
   }
 
   componentDidMount(){
-    const { playerOne, playerTwo } = this.props;
+    const { playerOne, playerTwo, onReset } = this.props;
 
     battle([ playerOne, playerTwo ])
       .then( (players) => {
@@ -107,3 +107,9 @@ export default class Results extends React.Component {
     );
   }
 }
+
+Results.propTypes = {
+  playerOne: PropTypes.string.isRequired,
+  playerTwo: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired
+};
