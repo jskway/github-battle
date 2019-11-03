@@ -19,7 +19,7 @@ function ProfileList ({ profile }) {
       )}
       { profile.company && (
         <li>
-          <FaBriefbase color='#795548' size={22} />
+          <FaBriefcase color='#795548' size={22} />
           { profile.company }
         </li>
       )}
