@@ -4,58 +4,9 @@ import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaCode, FaUser } from '
 import Card from './Card';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
+import Tooltip from './Tooltip';
 
-const styles = {
-  container: {
-    position: 'relative',
-    display: 'flex'
-  },
-  tooltip: {
-    boxSizing: 'border-box',
-    position: 'absolute',
-    width: '160px',
-    bottom: '100%',
-    left: '50%',
-    marginLeft: '-80px',
-    borderRadius: '3px',
-    backgroundColor: 'hsla(0, 0%, 20%, 0.9)',
-    padding: '7px',
-    marginBottom: '5px',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '14px',
-  }
-}
-
-class ProfileList extends React.Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      hoveringLocation: false,
-      hoveringCompany: false
-    }
-
-    this.mouseOver = this.mouseOver.bind(this)
-    this.mouseOut = this.mouseOut.bind(this)
-  }
-
-  mouseOver(id) {
-    this.setState({
-      [id]: true
-    })
-  }
-
-  mouseOut(id) {
-    this.setState({
-      [id]: false
-    })
-  }
-
-  render() {
-    const { profile } = this.props;
-    const { hoveringCompany, hoveringLocation } = this.state;
-
+function ProfileList({ profile }) {
     return (
       <ul className='card-list'>
         <li>
@@ -63,23 +14,13 @@ class ProfileList extends React.Component {
           { profile.name } 
         </li>
         { profile.location && (
-          <li
-            onMouseOver={() => this.mouseOver('hoveringLocation')}
-            onMouseOut={() => this.mouseOut('hoveringLocation')}
-            style={styles.container}
-          >
-            {hoveringLocation === true && <div style={styles.tooltip}>User's location</div>}
+          <li>
             <FaCompass color='rgb(144, 116, 255)' size={22} />
             { profile.location }
           </li>
         )}
         { profile.company && (
-          <li
-            onMouseOver={() => this.mouseOver('hoveringCompany')}
-            onMouseOut={() => this.mouseOut('hoveringCompany')}
-            style={styles.container}
-          >
-            {hoveringCompany === true && <div style={styles.tooltip}>User's company</div>}
+          <li>
             <FaBriefcase color='#795548' size={22} />
             { profile.company }
           </li>
@@ -94,7 +35,6 @@ class ProfileList extends React.Component {
         </li>
       </ul>
     );
-  }
 }
 
 
