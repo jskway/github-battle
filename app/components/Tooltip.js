@@ -23,7 +23,7 @@ const styles = {
   }
 }
 
-export default class ToolTip extends React.Component {
+export default class Tooltip extends React.Component {
   constructor(props){
     super(props);
 
@@ -55,7 +55,7 @@ export default class ToolTip extends React.Component {
       <div 
         onMouseOver={this.mouseOver} 
         onMouseOut={this.mouseOut}
-        styles={styles.container}>
+        style={styles.container}>
           {hovering === true && <div style={styles.tooltip}>{text}</div>}
           {children}
       </div>
