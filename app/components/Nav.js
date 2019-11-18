@@ -12,7 +12,7 @@ export default function Nav () {
             onClick={toggleTheme}
           >
             {theme === 'light' ? '🔦' : '💡' }
-          </button>>
+          </button>
         </nav>
       )}
     </ThemeConsumer>
