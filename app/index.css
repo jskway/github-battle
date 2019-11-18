@@ -188,6 +188,11 @@ li {
   background: rgba(0, 0, 0, 0.02);
 }
 
+.player-inputs .input-dark {
+  color: #DADADA;
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .player-inputs button {
   flex: 1;
   margin-left: 10px;
@@ -216,6 +221,16 @@ li {
 .dark-btn:disabled {
   color: #c7c7c7;
   background: #f2f2f2;
+}
+
+.light-btn {
+  color: #000;
+  background: #aaa8a8;
+}
+
+.light-btn:disabled {
+  background: #292929;
+  color: #4a4a4a;
 }
 
 .players-container {
